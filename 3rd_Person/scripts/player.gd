@@ -25,6 +25,8 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+		animplay.play("idle")
+		
 
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -37,7 +39,7 @@ func _physics_process(delta):
 	if direction:
 		if animplay.current_animation != "walking":
 			animplay.play("walking")
-		
+			
 		visual.look_at(position + direction)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
